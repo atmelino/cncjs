@@ -512,6 +512,15 @@ class GrblController {
         });
 
         this.runner.on('parameters', (res) => {
+            // atmelino
+            log.error('parameters: ' + JSON.stringify(res));
+            const probingData = {
+                type: 'probing',
+                printed: false,
+                result: res.value
+            };
+            //this.emit('serialport:read', 'parameters');
+            this.emit('serialport:read', probingData);
             this.emit('serialport:read', res.raw);
         });
 
