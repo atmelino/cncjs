@@ -366,6 +366,8 @@ class GrblController {
         // Grbl
         this.runner = new GrblRunner();
 
+        // atmelino
+        log.error('new GrblRunner');
         this.runner.on('raw', noop);
 
         this.runner.on('status', (res) => {
