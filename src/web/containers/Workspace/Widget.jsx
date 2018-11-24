@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import React, { PureComponent } from 'react';
+import ProbingGridWidget from '../../widgets/ProbingGrid';
 import AxesWidget from '../../widgets/Axes';
 import ConnectionWidget from '../../widgets/Connection';
 import ConsoleWidget from '../../widgets/Console';
@@ -18,6 +19,7 @@ import WebcamWidget from '../../widgets/Webcam';
 
 const getWidgetByName = (name) => {
     return {
+        'probinggrid': ProbingGridWidget,
         'axes': AxesWidget,
         'connection': ConnectionWidget,
         'console': ConsoleWidget,

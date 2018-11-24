@@ -28,6 +28,9 @@ const defaultState = {
         }
     },
     widgets: {
+        probinggrid: {
+            minimized: false
+        },
         axes: {
             minimized: false,
             axes: ['x', 'y', 'z'],
