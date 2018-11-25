@@ -40,7 +40,7 @@ const SENDER_STATUS_ACK = 'ack';
 const WAIT = '%wait';
 
 const log = logger('controller:TinyG');
-const noop = () => {};
+const noop = () => { };
 
 class TinyGController {
     type = TINYG;
@@ -408,6 +408,28 @@ class TinyGController {
             }
 
             const { hold, sent, received } = this.sender.state;
+
+            // atmelino
+            log.error('TinyGController.js r:' + JSON.stringify(r));
+
+            // atmelino
+            if (Object.prototype.hasOwnProperty.call(r, 'prb')) {
+                log.error('TinyGController.js: prb found');
+                // Work position
+                //const wp = this.controller.getWorkPosition();
+                //const workPosition = {
+                //    x: wp.posx,
+                //    y: wp.posy,
+                //    z: wp.posz
+                //}
+                const probingData = {
+                    type: 'probing',
+                    printed: false,
+                    result: r.prb,
+                };
+                log.error('TinyGController.js:' + JSON.stringify(probingData));
+                this.emit('serialport:read', probingData);
+            }
 
             if (this.workflow.state === WORKFLOW_STATE_RUNNING) {
                 const n = _.get(r, 'r.n') || _.get(r, 'n');

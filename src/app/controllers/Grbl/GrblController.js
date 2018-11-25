@@ -245,6 +245,9 @@ class GrblController {
 
             this.connection.write(line + '\n');
             log.silly(`> ${line}`);
+            // atmelino
+            // this prints every line of gcode in terminal
+            log.error('this.feeder.on' + line);
         });
         this.feeder.on('hold', noop);
         this.feeder.on('unhold', noop);
