@@ -18,6 +18,7 @@ class ProbingGrid extends PureComponent {
         super(props);
         this.state = {
             probingObj: [],
+            probingString: [],
             referenceZ: 0.0
         };
     }
@@ -26,15 +27,16 @@ class ProbingGrid extends PureComponent {
         log.error('ProbingGrid clearGrid');
         this.setState({
             probingObj: [],
+            probingString: [],
             referenceZ: 0.0
         });
     };
 
     handleClickSave = () => {
-        var probingString = [];
+        //var probingString = [];
         this.state.probingObj.forEach(el => {
             //probingString.push(el.x + ' ' + el.y + ' ' + el.z + '\n');
-            probingString.push(el.x + ' ' + el.y + ' ' + el.z + ' ' + el.pz + '\n');
+            this.state.probingString.push(el.x + ' ' + el.y + ' ' + el.z + ' ' + el.pz + '\n');
         });
         var element = document.createElement('a');
         var file = new Blob(this.state.probingString, { type: 'text/plain' });
@@ -91,9 +93,9 @@ class ProbingGrid extends PureComponent {
                         if (sx === this.state.probingObj[index].x && sy === this.state.probingObj[index].y) {
                             log.error('ProbingGrid repeat position: ');
                             this.state.referenceZ = Number(sz);
-                            //this.state.probingObj.pop();
                         }
                     }
+                    log.error('ProbingGrid new reference: ' + this.state.referenceZ);
                     let PRBz = Number(sz);
                     let corz = PRBz - this.state.referenceZ; // corrected z
                     cz = numeral(corz).format('0.000');
