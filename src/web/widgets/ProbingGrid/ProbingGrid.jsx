@@ -17,23 +17,24 @@ class ProbingGrid extends PureComponent {
     constructor(props) {
         super(props);
         this.state = {
-            probingString: [],
-            probingObj: []
+            probingObj: [],
+            referenceZ: 0.0
         };
     }
 
     clearGrid = () => {
         log.error('ProbingGrid clearGrid');
         this.setState({
-            probingString: [],
-            probingObj: []
+            probingObj: [],
+            referenceZ: 0.0
         });
     };
 
     handleClickSave = () => {
+        var probingString = [];
         this.state.probingObj.forEach(el => {
-            this.state.probingString.push(el.x + ' ' + el.y + ' ' + el.z + '\n');
-            //this.state.probingString.push(sx + ' ' + sy + ' ' + sz + '\n');
+            //probingString.push(el.x + ' ' + el.y + ' ' + el.z + '\n');
+            probingString.push(el.x + ' ' + el.y + ' ' + el.z + ' ' + el.pz + '\n');
         });
         var element = document.createElement('a');
         var file = new Blob(this.state.probingString, { type: 'text/plain' });
@@ -76,27 +77,28 @@ class ProbingGrid extends PureComponent {
                 let sx = state.probingData.result.x;
                 let sy = state.probingData.result.y;
                 let sz = state.probingData.result.z;
-                //let PRBx = Number(sx);
-                //let PRBy = Number(sy);
-                let PRBz = Number(sz);
 
-                // // same x-y position as before? Replace previous entry
-                // if (this.state.probingObj.length > 0) {
-                //     log.error('ProbingGrid points: ' + this.state.probingObj.length);
-                //     let index = this.state.probingObj.length - 1;
-                //     if (sx === this.state.probingObj[index].x && sy === this.state.probingObj[index].y) {
-                //         log.error('ProbingGrid repeat position: ');
-                //         this.state.probingObj.pop();
-                //     }
-                // }
-
-                // correct new entry for autolevel plane
-                let ref = Number(sz);
+                // correct new z entry for autolevel plane
+                var cz = numeral(0.0).format('0.000');
                 if (this.state.probingObj.length > 0) {
-                    ref = Number(this.state.probingObj[0].pz);
+                    log.error('ProbingGrid points: ' + this.state.probingObj.length);
+                    // first point? use z as reference
+                    if (this.state.probingObj.length === 1) {
+                        this.state.referenceZ = Number(sz);
+                    } else {
+                        // same x-y position as before? Replace previous entry
+                        let index = this.state.probingObj.length - 1;
+                        if (sx === this.state.probingObj[index].x && sy === this.state.probingObj[index].y) {
+                            log.error('ProbingGrid repeat position: ');
+                            this.state.referenceZ = Number(sz);
+                            //this.state.probingObj.pop();
+                        }
+                    }
+                    let PRBz = Number(sz);
+                    let corz = PRBz - this.state.referenceZ; // corrected z
+                    cz = numeral(corz).format('0.000');
                 }
-                let corz = PRBz - ref; // corrected z
-                var cz = numeral(corz).format('0.000');
+
                 this.state.probingObj.push({
                     x: sx,
                     y: sy,

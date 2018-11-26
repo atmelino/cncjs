@@ -215,7 +215,7 @@ class ProbingGridWidget extends PureComponent {
                         {isForkedWidget &&
                             <i className="fa fa-code-fork" style={{ marginRight: 5 }} />
                         }
-                        {i18n._('ProbingGrid Probing')}
+                        {i18n._('Probing Grid')}
                     </Widget.Title>
                     <Widget.Controls className={this.props.sortable.filterClassName}>
                         <Widget.Button
