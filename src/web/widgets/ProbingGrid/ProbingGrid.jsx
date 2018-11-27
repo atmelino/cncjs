@@ -1,11 +1,8 @@
-//import _ from 'lodash';
 import PropTypes from 'prop-types';
 import React, { PureComponent } from 'react';
 import numeral from 'numeral';
 import ReactTable from 'react-table';
 import './react-table.css';
-//import controller from '../../lib/controller';
-//import i18n from '../../lib/i18n';
 import log from '../../lib/log';
 
 class ProbingGrid extends PureComponent {
@@ -80,26 +77,28 @@ class ProbingGrid extends PureComponent {
                 let sy = state.probingData.result.y;
                 let sz = state.probingData.result.z;
 
-                // correct new z entry for autolevel plane
-                var cz = numeral(0.0).format('0.000');
-                if (this.state.probingObj.length > 0) {
-                    log.error('ProbingGrid points: ' + this.state.probingObj.length);
-                    // first point? use z as reference
-                    if (this.state.probingObj.length === 1) {
-                        this.state.referenceZ = Number(sz);
-                    } else {
-                        // same x-y position as before? Replace previous entry
-                        let index = this.state.probingObj.length - 1;
-                        if (sx === this.state.probingObj[index].x && sy === this.state.probingObj[index].y) {
-                            log.error('ProbingGrid repeat position: ');
-                            this.state.referenceZ = Number(sz);
-                        }
-                    }
-                    log.error('ProbingGrid new reference: ' + this.state.referenceZ);
-                    let PRBz = Number(sz);
-                    let corz = PRBz - this.state.referenceZ; // corrected z
-                    cz = numeral(corz).format('0.000');
+                // first data point becomes z reference
+                if (this.state.probingObj.length === 0) {
+                    this.state.referenceZ = Number(sz);
                 }
+
+                // correct new z entry for autolevel plane
+                //var cz = numeral(0.0).format('0.000');
+                log.error('ProbingGrid new reference: ' + this.state.referenceZ);
+                let PRBz = Number(sz);
+                let corz = PRBz - this.state.referenceZ; // corrected z
+                var cz = numeral(corz).format('0.000');
+
+                // if (this.state.probingObj.length > 0) {
+                //     log.error('ProbingGrid points: ' + this.state.probingObj.length);
+                //     // first point? use z as reference
+                //     // same x-y position as before? Replace previous entry
+                //     let index = this.state.probingObj.length - 1;
+                //     if (sx === this.state.probingObj[index].x && sy === this.state.probingObj[index].y) {
+                //         log.error('ProbingGrid repeat position: ');
+                //         this.state.referenceZ = Number(sz);
+                //     }
+                // }
 
                 this.state.probingObj.push({
                     x: sx,
