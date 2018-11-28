@@ -250,6 +250,8 @@ class TinyGController {
 
             this.connection.write(line + '\n');
             log.silly(`> ${line}`);
+            // atmelino
+            //log.error('atmelino line: ' + line);
         });
         this.feeder.on('hold', noop);
         this.feeder.on('unhold', noop);
@@ -410,11 +412,11 @@ class TinyGController {
             const { hold, sent, received } = this.sender.state;
 
             // atmelino
-            log.error('TinyGController.js r:' + JSON.stringify(r));
+            // log.error('atmelino r:' + JSON.stringify(r));
 
             // atmelino
             if (Object.prototype.hasOwnProperty.call(r, 'prb')) {
-                log.error('TinyGController.js: prb found');
+                //log.error('TinyGController.js: prb found');
                 // Work position
                 //const wp = this.controller.getWorkPosition();
                 //const workPosition = {
@@ -427,7 +429,7 @@ class TinyGController {
                     printed: false,
                     result: r.prb,
                 };
-                log.error('TinyGController.js:' + JSON.stringify(probingData));
+                log.error('atmelino probingData:' + JSON.stringify(probingData));
                 this.emit('serialport:read', probingData);
             }
 

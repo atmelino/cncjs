@@ -54,6 +54,9 @@ import {
     TINYG_GCODE_PATH_G61_1,
     TINYG_GCODE_PATH_G64
 } from './constants';
+import logger from '../../lib/logger';
+
+const log = logger('runner:TinyG');
 
 class TinyGRunner extends events.EventEmitter {
     state = {
@@ -120,6 +123,9 @@ class TinyGRunner extends events.EventEmitter {
     parser = new TinyGLineParser();
 
     parse(data) {
+        // atmelino
+        // log.error('atmelino line: ' + data);
+
         data = ('' + data).replace(/\s+$/, '');
         if (!data) {
             return;

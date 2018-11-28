@@ -32,8 +32,8 @@ class ProbingGrid extends PureComponent {
     handleClickSave = () => {
         //var probingString = [];
         this.state.probingObj.forEach(el => {
-            //probingString.push(el.x + ' ' + el.y + ' ' + el.z + '\n');
-            this.state.probingString.push(el.x + ' ' + el.y + ' ' + el.z + ' ' + el.pz + '\n');
+            // this.state.probingString.push(el.x + ' ' + el.y + ' ' + el.z + ' ' + el.pz + '\n');
+            this.state.probingString.push(el.x + ' ' + el.y + ' ' + el.z + '\n');
         });
         var element = document.createElement('a');
         var file = new Blob(this.state.probingString, { type: 'text/plain' });
