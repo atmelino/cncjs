@@ -1,0 +1,18 @@
+{
+  "files.exclude": {
+    "__error": "Not found",
+    ".babelrc": true,
+    ".bowerrc": true,
+    "appveyor.yml": true,
+    "dist": true,
+    ".github": true,
+    ".vscode": true,
+    "Dockerfile": true,
+    "LICENSE": true,
+    ".travis.yml": true,
+    "CHANGELOG.md": true,
+    "electron-build": true,
+    "static": true,
+    "media": true
+  }
+}

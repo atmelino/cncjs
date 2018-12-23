@@ -1,3 +1,14 @@
+this is a fork of 
+[cnc.js](https://github.com/cncjs/cncjs)
+
+it adds a widget for prbing a grid of points for use with autolevelling.
+
+probingWidget.png
+
+
+
+
+
 # CNCjs [![Backers on Open Collective](https://opencollective.com/cheton/backers/badge.svg)](#backers) [![Sponsors on Open Collective](https://opencollective.com/cheton/sponsors/badge.svg)](#sponsors) [![Travis CI Build Status](https://travis-ci.org/cncjs/cncjs.svg)](https://travis-ci.org/cncjs/cncjs) [![AppVeyor Build status](https://ci.appveyor.com/api/projects/status/qxx53wq32w3edule?svg=true)](https://ci.appveyor.com/project/cheton/cncjs) [![Coverage Status](https://coveralls.io/repos/github/cncjs/cncjs/badge.svg?branch=master)](https://coveralls.io/github/cncjs/cncjs?branch=master)
 
 [![NPM](https://nodei.co/npm/cncjs.png?downloads=true&stars=true)](https://www.npmjs.com/package/cncjs)
