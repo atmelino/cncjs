@@ -6,7 +6,8 @@ it adds a widget for probing a grid of points for use with autolevelling.
 To enable it, click on Manage Widgets and enable the widget
 ![Manage Widgets](https://github.com/atmelino/cncjs/blob/master/githubimages/widgetManager.png)
 
-Consecutive probing results can be displayed in a table and save in a file
+Consecutive probing results can be displayed in a table and saved in a file
+<br>
 ![probing grid](https://github.com/atmelino/cncjs/blob/master/githubimages/probingWidget.png)
 
 This feature can be used with 
@@ -14,11 +15,15 @@ This feature can be used with
 
 Work flow:
 
-import your PCB gcode into Autoleveller AE
-generate probing gcode with Probe File Generator
-run probing gcode in cnc.js
-save probing results as Raw Probe File
-load Raw Probe File in Autoleveller AE
-generate autolevelled PCB gcode
-run autolevelled PCB gcode on your PCB in cnc.js.
+<ul>
+  <li>import your PCB gcode into Autoleveller AE</li>
+  <li>generate probing gcode with Probe File Generator</li>
+  <li>run probing gcode in cnc.js</li>
+  <li>save probing results as Raw Probe File</li>
+  <li>load Raw Probe File in Autoleveller AE</li>
+  <li>generate autolevelled PCB gcode</li>
+  <li>run autolevelled PCB gcode on your PCB in cnc.js</li>
+</ul>
+
+
 
